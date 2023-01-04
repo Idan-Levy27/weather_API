@@ -5,6 +5,7 @@ app = Flask(__name__)
 stations = pd.read_csv("data_small/stations.txt", skiprows=17)
 stations = stations[["STAID", "STANAME                                 "]]
 
+
 @app.route("/")
 def home():
     return render_template("home.html", data=stations.to_html())
@@ -33,7 +34,7 @@ def yearly(station, year):
     df = pd.read_csv(filename, skiprows=20)
     df["    DATE"] = df["    DATE"].astype(str)
     result = df[df["    DATE"].str.startswith(str(year))].to_dict(orient="records")
-    return  result
+    return result
 
 
 if __name__ == "__main__":
